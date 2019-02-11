@@ -1123,7 +1123,6 @@ GameObject:
   - component: {fileID: 296248528}
   - component: {fileID: 288719888}
   - component: {fileID: 290976340}
-  - component: {fileID: 1908219236}
   - component: {fileID: 1908219237}
   - component: {fileID: 301696951}
   m_Layer: 0
@@ -1146,6 +1145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 419277766}
+  gameOverGameObject: {fileID: 1451553653}
 --- !u!4 &301734800
 Transform:
   m_ObjectHideFlags: 0
@@ -2315,6 +2315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 419277766}
+  gameOverGameObject: {fileID: 0}
 --- !u!1 &602137299
 GameObject:
   m_ObjectHideFlags: 0
@@ -8498,19 +8499,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855406471}
   m_CullTransparentMesh: 0
---- !u!114 &1908219236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301696950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16af8cbec0a4b7e449ac4210efa3383d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelFinishScreen: {fileID: 816174548}
 --- !u!114 &1908219237
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,11 +9,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		private bool cheeseGet;
 		private GameObject cheesePromptText;
 		private GameObject cheeseGetText;
+		private GameObject cheeseGetImg;
 		private GameObject barrier;
 		
 		void Awake(){
 			cheeseGetText = GameObject.Find("Menus/CheeseGet");
 			cheeseGetText.gameObject.SetActive(false);
+			cheeseGetImg = GameObject.Find("Menus/CheeseGetImg");
+			cheeseGetImg.gameObject.SetActive(false);
 		}
 		
 		void Start(){
@@ -29,7 +32,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			{
 				Destroy(col.gameObject);
 				Destroy(barrier);
+				
 				cheeseGetText.gameObject.SetActive(true);
+				cheeseGetImg.gameObject.SetActive(true);
 				cheeseGet = true;
 			}
 			//reaching the mousehole

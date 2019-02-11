@@ -6,6 +6,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 {
 	public class Pause : MonoBehaviour {
 		public Canvas pauseScreen;
+		public GameObject gameOverGameObject;
 		
 		void Awake(){
 			
@@ -16,7 +17,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		}
 		
 		void Update(){
-			if(Input.GetButtonDown("Pause")){
+			if(Input.GetButtonDown("Pause") && !(gameOverGameObject.activeSelf)){
 				PauseUnpause();
 			}
 		}
