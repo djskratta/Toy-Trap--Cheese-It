@@ -6,29 +6,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
 {
 	public class GameFinish : MonoBehaviour {
 		public Canvas levelFinishScreen;
+		public GameObject cheese;
 		private bool cheeseGet;
-		private GameObject cheesePromptText;
-		private GameObject cheeseGetText;
-		private GameObject cheeseGetImg;
+		public GameObject cheesePromptText;
+		public GameObject cheeseGetText;
+		public GameObject cheeseGetImg;
 		private GameObject barrier;
-		
-		void Awake(){
-			cheeseGetText = GameObject.Find("Menus/CheeseGet");
-			cheeseGetText.gameObject.SetActive(false);
-			cheeseGetImg = GameObject.Find("Menus/CheeseGetImg");
-			cheeseGetImg.gameObject.SetActive(false);
-		}
+		private GameObject mousehole;
 		
 		void Start(){
 			cheeseGet = false;
-			cheesePromptText = GameObject.Find("Menus/CheesePrompt");
+			mousehole = GameObject.Find("MouseHole/Cylinder");
 			barrier = GameObject.Find("Exit/Barrier");
 		}
 		
 		void OnTriggerEnter (Collider col)
 		{
 			//getting the cheese and opening the mousehole
-			if(col.gameObject.name == "Cheese")
+			if(col.gameObject == cheese)
 			{
 				Destroy(col.gameObject);
 				Destroy(barrier);
@@ -38,7 +33,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				cheeseGet = true;
 			}
 			//reaching the mousehole
-			else if(col.gameObject.name == "MouseHole")
+			else if(col.gameObject == mousehole)
 			{
 				//if you got the cheese, complete the game
 				if(cheeseGet){
@@ -50,7 +45,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 					cheesePromptText.gameObject.SetActive(true);
 				}
 			}
-			else{Debug.Log(col.gameObject.name);}
 		}
 	}
 }
