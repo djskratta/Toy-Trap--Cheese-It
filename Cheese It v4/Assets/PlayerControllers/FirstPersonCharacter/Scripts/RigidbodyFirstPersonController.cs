@@ -83,7 +83,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
         private Rigidbody m_RigidBody;
-        private BoxCollider m_Box;
         private float m_YRotation;
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
@@ -122,7 +121,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Start()
         {
             m_RigidBody = GetComponent<Rigidbody>();
-            m_Box = GetComponent<BoxCollider>();
             mouseLook.Init (transform, cam.transform);
 		}
 

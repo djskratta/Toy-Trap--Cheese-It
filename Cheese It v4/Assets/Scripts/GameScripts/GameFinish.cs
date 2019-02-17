@@ -11,13 +11,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		public GameObject cheesePromptText;
 		public GameObject cheeseGetText;
 		public GameObject cheeseGetImg;
-		private GameObject barrier;
-		private GameObject mousehole;
+		public GameObject mousehole;
+		public AudioSource BGMusic;
 		
 		void Start(){
 			cheeseGet = false;
-			mousehole = GameObject.Find("MouseHole/Cylinder");
-			barrier = GameObject.Find("Exit/Barrier");
 		}
 		
 		void OnTriggerEnter (Collider col)
@@ -26,7 +24,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			if(col.gameObject == cheese)
 			{
 				Destroy(col.gameObject);
-				Destroy(barrier);
 				
 				cheeseGetText.gameObject.SetActive(true);
 				cheeseGetImg.gameObject.SetActive(true);
@@ -37,6 +34,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			{
 				//if you got the cheese, complete the game
 				if(cheeseGet){
+					BGMusic.mute = true;
 					levelFinishScreen.gameObject.SetActive(true);
 					GetComponent<RigidbodyFirstPersonController>().enabled = false;
 				}
