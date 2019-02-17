@@ -15,13 +15,16 @@ public class SelectOnInput : MonoBehaviour {
     }
     
     // Update is called once per frame
-    void Update () 
+    void Update ()
     {
-        if (Input.GetAxisRaw ("Vertical") != 0 && buttonSelected == false) 
-        {
+        if (Input.GetAxisRaw ("Vertical") != 0 && buttonSelected == false){
             eventSystem.SetSelectedGameObject(selectedObject);
             buttonSelected = true;
         }
+		if(Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.Mouse2)){
+            eventSystem.SetSelectedGameObject(selectedObject);
+            buttonSelected = true;
+		}
     }
 
     private void OnDisable()
