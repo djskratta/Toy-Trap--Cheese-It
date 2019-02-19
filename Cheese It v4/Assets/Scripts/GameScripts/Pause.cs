@@ -11,13 +11,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		public GameObject cheeseGetGameObject;
 		
 		public AudioSource BGMusic;
+		public AudioSource MoveNoise;
 		
 		void Awake(){
 			
 		}
 		
 		void Start(){
-			
 		}
 		
 		void Update(){

@@ -8,9 +8,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		public Canvas gameOverScreen;
 		public AudioSource BGMusic;
 		
+		
+		void Awake(){
+			//Time.timeScale = 0.0f;
+		}
+		
 		void OnCollisionEnter (Collision col)
 		{
-			if(col.gameObject.name == "Guard")
+			if(col.gameObject.tag == "Guard")
 			{
 				BGMusic.mute = true;
 				gameOverScreen.gameObject.SetActive(true);

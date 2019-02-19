@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -77,6 +78,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
         public Camera cam;
+		public AudioSource moveNoise;
         public MovementSettings movementSettings = new MovementSettings();
         public MouseLook mouseLook = new MouseLook();
         public AdvancedSettings advancedSettings = new AdvancedSettings();
@@ -133,6 +135,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Jump = true;
             }
+			
+			//play sound if the character is moving and things aren't paused
+			//if(Input.GetButtonDown("Pause"))
+			if((Input.GetAxisRaw("Vertical") != 0f || Input.GetAxisRaw("Horizontal") != 0f) && Time.timeScale != 0f){
+				moveNoise.gameObject.SetActive(true);
+			}
+			else{
+				moveNoise.gameObject.SetActive(false);
+			}
 		}
 
 

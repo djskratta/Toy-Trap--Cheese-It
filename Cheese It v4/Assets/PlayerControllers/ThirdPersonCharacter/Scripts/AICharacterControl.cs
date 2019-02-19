@@ -13,10 +13,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		//public Transform eyes;
 		public Transform target;                                    // target to aim for
 		private bool isDetected;
+		private bool prev_detectState;
 		public Transform[] points;
 		private int destPoint = 0;
 		public int detectionDistance;
 		public Transform eyes;
+		public AudioSource detectAudio;
 		
         private void Start()
         {
@@ -27,21 +29,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 	        agent.updateRotation = false;
 	        agent.updatePosition = true;
 			isDetected = false;
-			
-			//GotoNextPoint();
         }
 
 
         private void Update()
         {
-            if (target != null){
-				//if the player is spotted, he is detected for five seconds; otherwise keep patrolling
-				if(isDetected)
-					StartCoroutine(DetectionCountdown());
-				else if (!agent.pathPending && agent.remainingDistance < 0.5f)
-					GotoNextPoint();
-			}
-
 			RaycastHit hit;
 			Debug.DrawLine(eyes.transform.position, eyes.transform.forward, Color.yellow);
 			if (Physics.Raycast(eyes.transform.position, eyes.transform.forward, out hit, detectionDistance))
@@ -53,6 +45,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 			else{isDetected = false;}
 
+            if (target != null){
+				//if the player is spotted, he is detected for five seconds; otherwise keep patrolling
+				if(isDetected){
+					StartCoroutine(DetectionCountdown());
+					
+					if(prev_detectState == false)
+						detectAudio.Play();
+				}
+				else if (!agent.pathPending && agent.remainingDistance < 0.5f)
+					GotoNextPoint();
+			}
+
 			//in case nothing works for some reason:
 			//Debug.Log(isDetected);
 			//Debug.Log(GetGameObjectPath(hit.transform.gameObject));
@@ -62,6 +66,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             else
                 character.Move(Vector3.zero, false, false);
 
+			prev_detectState = isDetected;
         }
 		
 		public static string GetGameObjectPath(GameObject obj)
@@ -92,6 +97,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public void SetTarget(Transform target)
         {
             this.target = target;
+        }
+		
+		
+        public void SetPoints(Transform[] points)
+        {
+            this.points = points;
         }
     }
 }
